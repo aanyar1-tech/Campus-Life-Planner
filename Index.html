@@ -1,0 +1,123 @@
+<html>
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charest="UTF-8">
+            <meta name="viewport" content="width, intial-scale=1.0">
+            <title>Campus Planner</title>
+        <link rel="stylesheet" href=`styles.css`>
+        </head>
+        <body>
+            <a href=`#main-content` class="skip-link">skip to main content</a>
+            <head>
+        <div class="container header-flex">
+          <h1>Campus Planner</h1><nav aria-label="main"></nav>>ul class="nav-list">
+          <li><a href=`#dashboard class"nav-link active" onclink="switchTab('dasboard')">Dashboard</a></li>
+          <li><a href=`#records` class="nav-link"onclink="switchTab"(`records`)>Task Schedule</a></li>
+          <li><a href=`#form-section`class="nav-link" onclick="switchTab">Task Schedule</a></li>
+        </ul>
+    </nav>
+
+<div id="status-region" class="sr-only" aria-live="polite"></div>
+<div id="alert-region" class="sr-only" aria-live="assertive"></div>
+<main id="main-content" class="container">
+    <!-- Dashboard View Section-->
+   <section id="dashboard" clas="app-section active">
+<h2>Dashboard & Time Metrics</h2>
+<div class="stats-grid">
+<div class="card"><h3>Total Task</h3><p id="stat-count">0</p></div>
+<div class="card"><h3>Total Minutes</h3><p id="stat-sum">0</p></div>
+<div class="card"><h3>Top Tag</h3><p id="stat-top">N/A</p></div>
+<div class="card">
+ <h3>Daily Study cap</h3>
+ <input type="number" id="cap-input" value="180" min="0" oninput="updateBudgetcap()" aria-label="Daily study time cap in minutes">
+ <p id="stat-cap-status" class="cap-msg safe">Remaining: 180 min</p>
+ </div>
+ </div>
+ </section>
+ <!--Record Table Section-->
+ <section id="records" class="app-section">
+    <h2>schedule Ledger</h2>
+    <div class="controls-bar">
+        <div class="search-wrap">
+            <label for="search-input">Regex Search:</label>
+            <input type="text" id="search-input" placeholder="e.g. Exam or @tag:study">
+            <button id="case-btn" type="button" onclink="togglecase()">Aa</button>
+            </div>
+        </div> class="sort-wrap">
+    </label for="sort-select">sort By:</label>
+    <select id="sort-select" onchange="handlesort()">
+        <option value="date-desc">Date (Newest)</option>
+        <option value="date-dsc">Date  (Oldest)</option>
+        <option value="amount-dsc">Duration (High to low)</option>
+        <option value="amount-asc">Duration (low to High)</option>
+        </select>
+    </div>
+</div>
+</div class="table-wrapper">
+<table>
+    <thead>
+        <tr>
+            <th>Due Date</th>
+            <th>Task Title</th>
+            <th>Tag Group</th>
+            <th>Duration(mins)</th>
+            <th>Action</th>
+            </tr>
+            </thead>
+            <tbody><!-- Dynamic rows go here--></tbody>
+            </table>
+        </div>
+        <p id="no-records" class="hidden">No matching schedule task found.</p>
+    </section>
+    <!--Form Handling Input Section-->
+    <section id="form-section" class="app-section">
+        <h2>Add / Edit Planner Task</h2>
+        <div class=".card">
+            <form id="transaction-form">
+                <div class="input-group">
+                    <label for="form-desc">Task Title:</label>
+                    <input type="text" id="form-desc" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="form-category">Tag Group:</label>
+                        <select id="form-category">
+                            <option value="Study">Study</option>
+                            <option value="Classes">Classes</option>
+                            <option value="Exam">Exam</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Social">Social</option>
+                        </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="form-amount">Duration(Minutes):</label>
+                            <input type="number" id="form-amount" required>
+                            </div>
+                           <button type="submit" id="submit-btn">Save Task Entry</button>
+                            </form>
+                            </div>
+                            </section>
+                        </main>
+
+                        <script src="scripts/app.js"></script>
+                    </body>
+                    </html>
+
+
+
+
+
+
+
+
+            
+
+
+    
+
+   
+
+
+        
+            
+        

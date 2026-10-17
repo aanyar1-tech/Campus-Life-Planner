@@ -1,0 +1,40 @@
+:root {
+    --primary-colour:#4f46e5;
+    --success-bg: #d1fae5;
+    --success-text:#065f46;
+    --danger-bg: #fee2e2;
+    --danger-text: #991b1b;
+    --bb-colour: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --border-color: #e2e8f0;
+
+}
+*{ 
+    box-sizing: border; margin:0; padding: 0;}
+    body {font-family: sans-serif; background-color: var(--bg-color); color: var(--text-main); padding: 10px;}
+  *:focus-visible { outline: 3px solid var(--primary-colors);}
+  .skip-link { position: absolute; top:-100px;left:10px; background:var(--primary-color); color:white; padding:8px; text-decoration:none;}
+   .skip-link:focus {top: 10px;}
+    .sr-only {position: absolute; width: 1px; height:1px; padding:0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;}
+    .container {max-width: 1000px; margin:0 auto;}
+    header { background:var(--card-bg); border-bottom: 1px solid var(--border-color);padding: 10px;}
+    .head-flex,.nav-list,.controls-bar {display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between; align-items :center;}
+    .nav-link.active {list-style:none;}
+    .nav-link{text-decoration:none;color:var(--text-main);padding:5px 10px;border-radius:4px;}
+    .nav-link.active {background:var(--primary-color); color:white;}
+    .app-section.action{display:block;}
+    .card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:6px;padding:15px;margin-bottom:15px;}
+    .stats-grid{display:grid;grid-template-columns:repeats(auto-fit,minmax(200px,1fr));gap: 10px;}
+    .cap-msg{margin-top:5px;font-weight:bold;padding:4px;border-radius:4px;border-radius: 4px;}
+    .cap-msg.safe{background:var(--success-bg);color:var(--success-text);}
+    .cap-msg.warning{background:var(--danger-bg);color:var(--danger-text);}
+    .input-group{margin-bottom:10px;}
+    input,select,button{width:100%;padding:8px;border:1px solid var(--border-color);border-radius:4px;margin-top:4px;}
+    button{background:var(--primary-color);color:white;border:none;cursor:pointer;font-weight:bold;}
+    .table{width:100%;border-collapse: collapse;}
+    th,td{padding:10px;text-align:left;border-bottom:1px solid var(--border-color);}
+    th{background:#f1f5f9;}
+    mark{background:#fde047;padding:02px;}
+    .hidden{display:none!important;}
+
