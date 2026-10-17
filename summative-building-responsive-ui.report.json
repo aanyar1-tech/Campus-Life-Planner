@@ -1,25 +1,25 @@
 {
   "reportVersion": "1.0",
-  "assignmentId": "assignment-1792241002424-ovimr7v",
+  "assignmentId": "assignment-1792245947300-uhq6t8u",
   "assignmentName": "Summative - Building Responsive UI",
-  "generatedAt": 1792241287667,
+  "generatedAt": 1792246532707,
   "metrics": {
-    "assignmentId": "assignment-1792241002424-ovimr7v",
+    "assignmentId": "assignment-1792245947300-uhq6t8u",
     "authorship": {
-      "totalLines": 628,
+      "totalLines": 10398,
       "manualLines": 418,
       "permittedAILines": 0,
-      "prohibitedAILines": 210,
-      "flaggedAILines": 0,
-      "authorshipPercentage": 33.43949044585987,
-      "prohibitedPercentage": 33.43949044585987
+      "prohibitedAILines": 283,
+      "flaggedAILines": 9697,
+      "authorshipPercentage": 95.97999615310636,
+      "prohibitedPercentage": 2.7216772456241585
     },
     "ownership": {
-      "score": 100,
-      "filesReviewed": 4,
+      "score": 81.80941579870063,
+      "filesReviewed": 5,
       "filesUnreviewed": 0,
       "unreviewedLines": 0,
-      "averageReviewTimeMs": 28610459.75
+      "averageReviewTimeMs": 23122305.8
     },
     "violations": [
       {
@@ -33,20 +33,34 @@
           "tool": "ai"
         },
         "firstDetectedAt": 1792135419485,
-        "lastDetectedAt": 1792238918615,
-        "count": 8
+        "lastDetectedAt": 1792246299468,
+        "count": 9
+      },
+      {
+        "type": "unreviewed-large-paste",
+        "severity": "medium",
+        "message": "Large paste accepted after only 0ms (minimum 5000ms)",
+        "details": {
+          "filePath": "c:/Users/HP/OneDrive/Desktop/Campus-Life-Planner/Campus-Life-Planner/summative-building-responsive-ui.report.json",
+          "reviewTimeMs": 0,
+          "lines": 9697,
+          "characters": 296994
+        },
+        "firstDetectedAt": 1792246174515,
+        "lastDetectedAt": 1792246174515,
+        "count": 1
       },
       {
         "type": "authorship-exceeded",
         "severity": "medium",
-        "message": "AI authorship 33.4% exceeds limit of 20%",
+        "message": "AI authorship 96.0% exceeds limit of 20%",
         "details": {
-          "actualPercentage": 33.43949044585987,
+          "actualPercentage": 95.97999615310636,
           "maxAllowedPercentage": 20,
-          "aiLines": 210
+          "aiLines": 9980
         },
-        "firstDetectedAt": 1792238918615,
-        "lastDetectedAt": 1792238918615,
+        "firstDetectedAt": 1792246299468,
+        "lastDetectedAt": 1792246299468,
         "count": 1
       },
       {
@@ -59,7 +73,7 @@
           "durationSeconds": 27088
         },
         "firstDetectedAt": 1792131037898,
-        "lastDetectedAt": 1792241287667,
+        "lastDetectedAt": 1792246174515,
         "count": 7
       }
     ],
@@ -9441,9 +9455,91 @@
         "source": "ai",
         "detectionMethod": "external-file-change",
         "confidence": "high"
+      },
+      {
+        "id": 831,
+        "timestamp": 1792246174515,
+        "tool": "ai",
+        "eventType": "code-generated",
+        "linesOfCode": 9697,
+        "linesRemoved": 0,
+        "linesChanged": 9697,
+        "charactersCount": 296994,
+        "filePath": "c:/Users/HP/OneDrive/Desktop/Campus-Life-Planner/Campus-Life-Planner/summative-building-responsive-ui.report.json",
+        "language": "json",
+        "metadata": {
+          "detectionMethod": "large-paste",
+          "confidence": "high",
+          "isAgentGenerated": true
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": false,
+        "source": "ai",
+        "detectionMethod": "large-paste",
+        "confidence": "high",
+        "assignmentId": "assignment-1792245947300-uhq6t8u",
+        "aiClassification": "flag"
+      },
+      {
+        "id": 832,
+        "timestamp": 1792246299468,
+        "tool": "ai",
+        "eventType": "code-generated",
+        "linesOfCode": 73,
+        "linesRemoved": 0,
+        "linesChanged": 73,
+        "charactersCount": 299397,
+        "filePath": "c:/Users/HP/OneDrive/Desktop/Campus-Life-Planner/Campus-Life-Planner/summative-building-responsive-ui.report.json",
+        "language": "json",
+        "metadata": {
+          "source": "external-file-change",
+          "detectionMethod": "external-file-change",
+          "confidence": "high",
+          "isAgentMode": true,
+          "isAgentGenerated": true
+        },
+        "reviewQuality": null,
+        "isReviewed": false,
+        "isAgentMode": true,
+        "agentSessionId": "agent-session-1792246299469-njjto9m9g",
+        "source": "ai",
+        "detectionMethod": "external-file-change",
+        "confidence": "high",
+        "assignmentId": "assignment-1792245947300-uhq6t8u",
+        "aiClassification": "prohibited",
+        "policyViolation": "agentic-use"
       }
     ],
     "fileReviews": [
+      {
+        "filePath": "c:/Users/HP/OneDrive/Desktop/Campus-Life-Planner/Campus-Life-Planner/summative-building-responsive-ui.report.json",
+        "date": "2026-10-17",
+        "tool": "ai",
+        "reviewQuality": "none",
+        "reviewScore": 9.047078993503145,
+        "isReviewed": false,
+        "linesGenerated": 9770,
+        "linesChanged": 9770,
+        "linesSinceReview": 9770,
+        "linesAdded": 9770,
+        "linesRemoved": 0,
+        "charactersCount": 596391,
+        "agentSessionId": "agent-session-1792246299469-njjto9m9g",
+        "isAgentGenerated": true,
+        "wasFileOpen": false,
+        "firstGeneratedAt": 1792246174515,
+        "totalReviewTime": 1169690,
+        "language": "json",
+        "modificationCount": 2,
+        "totalTimeInFocus": 1399176,
+        "scrollEventCount": 258,
+        "cursorMovementCount": 49,
+        "editsMade": false,
+        "lastOpenedAt": 1792246314384,
+        "reviewSessionsCount": 0,
+        "reviewedInTerminal": false
+      },
       {
         "filePath": "c:/Users/HP/OneDrive/Desktop/Campus-Life-Planner/Campus-Life-Planner/tests.html",
         "date": "2026-10-17",
@@ -9461,15 +9557,15 @@
         "isAgentGenerated": true,
         "wasFileOpen": false,
         "firstGeneratedAt": 1792224021837,
-        "lastReviewedAt": 1792241280705,
+        "lastReviewedAt": 1792246525035,
         "totalReviewTime": 62210054,
         "language": "html",
         "modificationCount": 3,
-        "totalTimeInFocus": 62213127,
+        "totalTimeInFocus": 67610422,
         "scrollEventCount": 1,
         "cursorMovementCount": 0,
         "editsMade": false,
-        "lastOpenedAt": 1792239024067,
+        "lastOpenedAt": 1792246223947,
         "reviewSessionsCount": 0,
         "reviewedInTerminal": false
       },
@@ -9490,15 +9586,15 @@
         "isAgentGenerated": true,
         "wasFileOpen": false,
         "firstGeneratedAt": 1792238893960,
-        "lastReviewedAt": 1792241280707,
+        "lastReviewedAt": 1792246525036,
         "totalReviewTime": 16464604,
         "language": "javascript",
         "modificationCount": 1,
-        "totalTimeInFocus": 16470622,
+        "totalTimeInFocus": 16473610,
         "scrollEventCount": 1,
         "cursorMovementCount": 1,
         "editsMade": false,
-        "lastOpenedAt": 1792239019354,
+        "lastOpenedAt": 1792243421669,
         "reviewSessionsCount": 0,
         "reviewedInTerminal": false
       },
@@ -9519,15 +9615,15 @@
         "isAgentGenerated": true,
         "wasFileOpen": false,
         "firstGeneratedAt": 1792221846727,
-        "lastReviewedAt": 1792241280704,
+        "lastReviewedAt": 1792246525035,
         "totalReviewTime": 4045608,
         "language": "json",
         "modificationCount": 1,
-        "totalTimeInFocus": 4080273,
+        "totalTimeInFocus": 4161175,
         "scrollEventCount": 0,
         "cursorMovementCount": 0,
         "editsMade": false,
-        "lastOpenedAt": 1792239017070,
+        "lastOpenedAt": 1792246502428,
         "reviewSessionsCount": 0,
         "reviewedInTerminal": false
       },
@@ -9594,14 +9690,14 @@
       },
       {
         "startTime": 1792238918615,
-        "endTime": 1792241287667,
-        "durationSeconds": 2369
+        "endTime": 1792246174515,
+        "durationSeconds": 7255
       }
     ]
   },
   "policy": {
     "maxAuthorshipPercentage": 20,
-    "minOwnershipScore": 100,
+    "minOwnershipScore": 80,
     "exemptFileGlobs": [
       "**/README*",
       "**/*.md",
@@ -9683,13 +9779,19 @@
       "timestamp": 1792241002429,
       "globs": [],
       "source": "assignment-activated"
+    },
+    {
+      "id": 2,
+      "timestamp": 1792245947302,
+      "globs": [],
+      "source": "assignment-activated"
     }
   ],
   "studentIdentifier": "a.anyar1@alustudent.com",
-  "repoUrl": "https//github.com/aanyar1-tech/Campus-Life-Planner.git",
-  "repoHeadCommit": "3bfa8b9eaf197fb342c82bcc28c49b9630058342",
+  "repoUrl": "hhtps://github.com/aanyar1-tech/Campus-Life-Planner.git",
+  "repoHeadCommit": "7a0b0022040ab7b810862f32b648ae697b6f7196",
   "integrity": {
     "algorithm": "sha256",
-    "hash": "90a108e534a7e74d2af8446641e2c8f36e21a01a00888c987729b09747aeb638"
+    "hash": "3bc72b4dd4c50eec51b017d10d510a6c96acfa778a2bd317c05433927f05ae95"
   }
 }
