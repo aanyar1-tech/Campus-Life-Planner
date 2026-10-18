@@ -3,7 +3,9 @@ An accessible, mobile-first responsive web application built with vanilla HTML, 
 • Author: a.anyar1@alustudent.com
 • Live App Link: https://aanyar1-tech.github.io/Campus-Life-Planner/
 • Code Repository: https://github.com/aanyar1-tech/Campus-Life-Planner
-
+  VIDEO LINK
+  https://www.loom.com/share/6c3111738a2342878fcde3caafb7d3c0
+  
 Project Structure & Links
 
 Click these links to view your project directory files directly on GitHub:
@@ -72,5 +74,5 @@ Running Project Test Framework
 2. Locate your root task planner workspace directory.
 3. Double-click on the clean tests.html document file directly.
 4. This launches an isolated browser script instance executing your regular expression assertion suite, instantly printing standard diagnostic pass and fail logs
-   VIDEO LINK
-https://www.loom.com/share/6c3111738a2342878fcde3caafb7d3c0
+
+ 
