@@ -71,5 +71,6 @@ Running Project Test Framework
 1. Open your primary operating system file explorer window.
 2. Locate your root task planner workspace directory.
 3. Double-click on the clean tests.html document file directly.
-4. This launches an isolated browser script instance executing your regular expression assertion suite, instantly printing standard diagnostic pass and fail logs.
-
+4. This launches an isolated browser script instance executing your regular expression assertion suite, instantly printing standard diagnostic pass and fail logs
+   VIDEO LINK
+https://www.loom.com/share/6c3111738a2342878fcde3caafb7d3c0
