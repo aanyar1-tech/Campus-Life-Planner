@@ -5,5 +5,9 @@
   {"id": "rec_3", "description": "Weekly cafeteria lunch meal plan package", "amount":45.50,"category": "Food","date":"2026-10-08"},
   {"id": "rec_4", "description": "Late late submission fee penalty charges","amount":15.00,"category": "Fees","date":"2026-10-10"},
   {"id": "rec_5", "description": "Weekly coffee coffe run study run study session","amount":8.50,"category":"food","date":"2026-10-14"}
+<<<<<<< HEAD
 
 ]
+=======
+  ]
+>>>>>>> 0ec8add52fcd1a87dbb9606d9d13332f9e8c4480
