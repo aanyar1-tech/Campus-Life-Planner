@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Planner</title>
+    <!-- Linked directly to your styles folder asset layout -->
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+    <!-- Skip link landmark anchor for keyboard accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
     <header>
@@ -24,11 +26,12 @@
         </div>
     </header>
 
+    <!-- Accessibility announcement placeholders -->
     <div id="status-region" class="sr-only" aria-live="polite"></div>
     <div id="alert-region" class="sr-only" aria-live="assertive"></div>
 
     <main id="main-content" class="container">
-        <!-- Dashboard View Section -->
+        <!-- Dashboard Section -->
         <section id="dashboard" class="app-section active">
             <h2>Dashboard & Time Metrics</h2>
             <div class="stats-grid">
@@ -43,7 +46,7 @@
             </div>
         </section>
 
-        <!-- Record Table Section -->
+        <!-- Ledger Table Section -->
         <section id="records" class="app-section">
             <h2>Schedule Ledger</h2>
             <div class="controls-bar">
@@ -131,9 +134,11 @@
         </section>
     </main>
 
-    <script src="app.js"></script>
+    <!-- Path configuration linking directly to your logic script file asset -->
+    <script src="scripts/app.js"></script>
 </body>
 </html>
+
 
 
 
