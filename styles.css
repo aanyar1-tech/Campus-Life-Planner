@@ -1,172 +1,250 @@
-:root {
-    --primary-color: #4f46e5;
-    --success-bg: #d1fae5;
-    --success-text: #065f46;
-    --danger-bg: #fee2e2;
-    --danger-text: #991b1b;
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-    --text-main: #0f172a;
-    --border-color: #e2e8f0;
+// --- Initial State & Local Storage ---
+let tasks = JSON.parse(localStorage.getItem('campus_planner_tasks')) || [];
+let currentSort = 'date-desc';
+let caseSensitive = false;
+
+// Initialize App on DOM Load
+document.addEventListener('DOMContentLoaded', () => {
+    initTabs();
+    renderTasks();
+    updateDashboardStats();
+    setupEventListeners();
+});
+
+// --- Tab Switching Logic ---
+function initTabs() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            switchTab(targetId);
+        });
+    });
 }
 
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0;
+function switchTab(targetId) {
+    // Hide all sections
+    document.querySelectorAll('.app-section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Deactivate all nav links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Activate target section
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+        targetSection.classList.add('active');
+    }
+
+    // Activate corresponding nav link
+    const activeLink = document.querySelector(`.nav-link[href="#${targetId}"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
+// Expose globally for inline fallback if needed
+window.switchTab = switchTab;
+
+// --- Event Listeners Setup ---
+function setupEventListeners() {
+    const form = document.getElementById('transaction-form');
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+    }
+
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', () => renderTasks());
+    }
 }
 
-body {
-    font-family: sans-serif; 
-    background-color: var(--bg-color); 
-    color: var(--text-main); 
-    padding: 10px;
+// --- Task CRUD & Form Handling ---
+function handleFormSubmit(e) {
+    e.preventDefault();
+
+    const titleInput = document.getElementById('form-desc');
+    const categorySelect = document.getElementById('form-category');
+    const amountInput = document.getElementById('form-amount');
+
+    const newTask = {
+        id: Date.now(),
+        date: new Date().toISOString().split('T')[0],
+        title: titleInput.value.trim(),
+        category: categorySelect.value,
+        duration: parseInt(amountInput.value) || 0
+    };
+
+    tasks.push(newTask);
+    saveAndRefresh();
+    
+    // Reset form and redirect to task schedule view
+    form.reset();
+    switchTab('records');
+    showStatusMessage('Task saved successfully!');
 }
 
-*:focus-visible { 
-    outline: 3px solid var(--primary-color);
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== id);
+    saveAndRefresh();
+    showStatusMessage('Task deleted.');
 }
 
-.skip-link { 
-    position: absolute; 
-    top: -100px; 
-    left: 10px; 
-    background: var(--primary-color); 
-    color: white; 
-    padding: 8px; 
-    text-decoration: none;
+function saveAndRefresh() {
+    localStorage.setItem('campus_planner_tasks', JSON.stringify(tasks));
+    renderTasks();
+    updateDashboardStats();
 }
 
-.skip-link:focus {
-    top: 10px;
+// --- Ledger Rendering, Search & Sort ---
+function renderTasks() {
+    const tbody = document.querySelector('table tbody');
+    const noRecordsMsg = document.getElementById('no-records');
+    const searchInput = document.getElementById('search-input');
+    
+    if (!tbody) return;
+
+    tbody.innerHTML = '';
+
+    // Filter tasks based on Regex search input
+    let filteredTasks = [...tasks];
+    if (searchInput && searchInput.value.trim() !== '') {
+        try {
+            const flags = caseSensitive ? '' : 'i';
+            const regex = new RegExp(searchInput.value, flags);
+            
+            filteredTasks = tasks.filter(task => {
+                // Check direct text or tag matching like @tag:study
+                const tagQueryMatch = searchInput.value.startsWith('@tag:') 
+                    ? task.category.toLowerCase().includes(searchInput.value.replace('@tag:', '').toLowerCase())
+                    : false;
+
+                return regex.test(task.title) || regex.test(task.category) || tagQueryMatch;
+            });
+        } catch (err) {
+            // Invalid regex fallback gracefully
+            filteredTasks = [];
+        }
+    }
+
+    // Sort tasks
+    filteredTasks.sort((a, b) => {
+        if (currentSort === 'date-desc') return new Date(b.date) - new Date(a.date);
+        if (currentSort === 'date-asc') return new Date(a.date) - new Date(b.date);
+        if (currentSort === 'amount-desc') return b.duration - a.duration;
+        if (currentSort === 'amount-asc') return a.duration - b.duration;
+        return 0;
+    });
+
+    if (filteredTasks.length === 0) {
+        if (noRecordsMsg) noRecordsMsg.classList.remove('hidden');
+    } else {
+        if (noRecordsMsg) noRecordsMsg.classList.add('hidden');
+        filteredTasks.forEach(task => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${escapeHTML(task.date)}</td>
+                <td>${escapeHTML(task.title)}</td>
+                <td><span class="badge">${escapeHTML(task.category)}</span></td>
+                <td>${task.duration} mins</td>
+                <td><button type="button" class="delete-btn" onclick="deleteTask(${task.id})">Delete</button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
 }
 
-.sr-only {
-    position: absolute; 
-    width: 1px; 
-    height: 1px; 
-    padding: 0; 
-    margin: -1px; 
-    overflow: hidden; 
-    clip: rect(0,0,0,0); 
-    border: 0;
+function handlesort() {
+    const select = document.getElementById('sort-select');
+    if (select) {
+        currentSort = select.value;
+        renderTasks();
+    }
+}
+window.handlesort = handlesort;
+
+function toggleCase() {
+    caseSensitive = !caseSensitive;
+    const btn = document.getElementById('case-btn');
+    if (btn) {
+        btn.style.background = caseSensitive ? 'var(--primary-color)' : '#e2e8f0';
+        btn.style.color = caseSensitive ? '#white' : 'inherit';
+    }
+    renderTasks();
+}
+window.toggleCase = toggleCase;
+
+// --- Dashboard Metrics & Study Cap ---
+function updateDashboardStats() {
+    const statCount = document.getElementById('stat-count');
+    const statSum = document.getElementById('stat-sum');
+    const statTop = document.getElementById('stat-top');
+
+    const totalTasks = tasks.length;
+    const totalMinutes = tasks.reduce((acc, t) => acc + t.duration, 0);
+
+    if (statCount) statCount.textContent = totalTasks;
+    if (statSum) statSum.textContent = totalMinutes;
+
+    if (statTop) {
+        if (totalTasks === 0) {
+            statTop.textContent = 'N/A';
+        } else {
+            const counts = {};
+            tasks.forEach(t => counts[t.category] = (counts[t.category] || 0) + 1);
+            const topCategory = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+            statTop.textContent = topCategory;
+        }
+    }
+
+    updateBudgetCap();
 }
 
-.container {
-    max-width: 1000px; 
-    margin: 0 auto;
+function updateBudgetCap() {
+    const capInput = document.getElementById('cap-input');
+    const capStatus = document.getElementById('stat-cap-status');
+    
+    if (!capInput || !capStatus) return;
+
+    const capLimit = parseInt(capInput.value) || 0;
+    const totalMinutes = tasks.reduce((acc, t) => acc + t.duration, 0);
+    const remaining = capLimit - totalMinutes;
+
+    if (remaining >= 0) {
+        capStatus.textContent = `Remaining: ${remaining} min`;
+        capStatus.className = 'cap-msg safe';
+    } else {
+        capStatus.textContent = `Over Cap by: ${Math.abs(remaining)} min`;
+        capStatus.className = 'cap-msg warning';
+    }
+}
+window.updateBudgetCap = updateBudgetCap;
+
+// --- Unit Converter Setting ---
+function convertDisplayUnits() {
+    const unitSelect = document.getElementById('display-unit');
+    if (!unitSelect) return;
+    
+    const isHours = unitSelect.value === 'hours';
+    // Optional unit conversion handler for UI representation if needed
+    showStatusMessage(`Display unit switched to ${unitSelect.value}`);
+}
+window.convertDisplayUnits = convertDisplayUnits;
+
+// --- Helpers ---
+function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+    );
 }
 
-header { 
-    background: var(--card-bg); 
-    border-bottom: 1px solid var(--border-color); 
-    padding: 10px;
+function showStatusMessage(msg) {
+    const region = document.getElementById('status-region');
+    if (region) {
+        region.textContent = msg;
+        setTimeout(() => region.textContent = '', 3000);
+    }
 }
-
-.header-flex, .nav-list, .controls-bar {
-    display: flex; 
-    gap: 10px; 
-    flex-wrap: wrap; 
-    justify-content: space-between; 
-    align-items: center;
-}
-
-.nav-list {
-    list-style: none;
-}
-
-.nav-link {
-    text-decoration: none; 
-    color: var(--text-main); 
-    padding: 5px 10px; 
-    border-radius: 4px;
-}
-
-.nav-link.active {
-    background: var(--primary-color); 
-    color: white;
-}
-
-/* Hide all sections by default, show only the active one */
-.app-section {
-    display: none;
-}
-
-.app-section.active {
-    display: block;
-}
-
-.card {
-    background: var(--card-bg); 
-    border: 1px solid var(--border-color); 
-    border-radius: 6px; 
-    padding: 15px; 
-    margin-bottom: 15px;
-}
-
-.stats-grid {
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 10px;
-}
-
-.cap-msg {
-    margin-top: 5px; 
-    font-weight: bold; 
-    padding: 4px; 
-    border-radius: 4px;
-}
-
-.cap-msg.safe {
-    background: var(--success-bg); 
-    color: var(--success-text);
-}
-
-.cap-msg.warning {
-    background: var(--danger-bg); 
-    color: var(--danger-text);
-}
-
-.input-group {
-    margin-bottom: 10px;
-}
-
-input, select, button {
-    width: 100%; 
-    padding: 8px; 
-    border: 1px solid var(--border-color); 
-    border-radius: 4px; 
-    margin-top: 4px;
-}
-
-button {
-    background: var(--primary-color); 
-    color: white; 
-    border: none; 
-    cursor: pointer; 
-    font-weight: bold;
-}
-
-table {
-    width: 100%; 
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px; 
-    text-align: left; 
-    border-bottom: 1px solid var(--border-color);
-}
-
-th {
-    background: #f1f5f9;
-}
-
-mark {
-    background: #fde047; 
-    padding: 2px;
-}
-
-.hidden {
-    display: none !important;
-}s
