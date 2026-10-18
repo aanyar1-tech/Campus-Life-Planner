@@ -7,27 +7,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Skip link landmark anchor for keyboard accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#dashboard" class="skip-link">Skip to main content</a>
     
     <header>
         <div class="container header-flex">
             <h1>Campus Planner</h1>
             <nav aria-label="main navigation">
                 <ul class="nav-list">
-                    <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
-                    <li><a href="#records" class="nav-link">Task Schedule</a></li>
-                    <li><a href="#form-section" class="nav-link">Add Task</a></li>
-                    <li><a href="#about-section" class="nav-link">About</a></li>
-                    <li><a href="#settings-section" class="nav-link">Settings</a></li>
+                    <li><a href="#dashboard" class="nav-link active" onclick="switchTab('dashboard'); return false;">Dashboard</a></li>
+                    <li><a href="#records" class="nav-link" onclick="switchTab('records'); return false;">Task Schedule</a></li>
+                    <li><a href="#form-section" class="nav-link" onclick="switchTab('form-section'); return false;">Add Task</a></li>
+                    <li><a href="#about-section" class="nav-link" onclick="switchTab('about-section'); return false;">About</a></li>
+                    <li><a href="#settings-section" class="nav-link" onclick="switchTab('settings-section'); return false;">Settings</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <!-- Accessibility announcement placeholders -->
-    <div id="status-region" class="sr-only" aria-live="polite"></div>
-    <div id="alert-region" class="sr-only" aria-live="assertive"></div>
 
     <main id="main-content" class="container">
         <!-- Dashboard Section -->
@@ -39,7 +34,7 @@
                 <div class="card"><h3>Top Tag</h3><p id="stat-top">N/A</p></div>
                 <div class="card">
                     <h3>Daily Study Cap</h3>
-                    <input type="number" id="cap-input" value="180" min="0" oninput="updateBudgetCap()" aria-label="Daily study time cap in minutes">
+                    <input type="number" id="cap-input" value="180" min="0" oninput="updateBudgetCap()">
                     <p id="stat-cap-status" class="cap-msg safe">Remaining: 180 min</p>
                 </div>
             </div>
@@ -50,8 +45,8 @@
             <h2>Schedule Ledger</h2>
             <div class="controls-bar">
                 <div class="search-wrap">
-                    <label for="search-input">Regex Search:</label>
-                    <input type="text" id="search-input" placeholder="e.g. Exam or @tag:study">
+                    <label for="search-input">Search:</label>
+                    <input type="text" id="search-input" placeholder="Search tasks...">
                     <button id="case-btn" type="button" onclick="toggleCase()">Aa</button>
                 </div>
                 <div class="sort-wrap">
@@ -72,17 +67,17 @@
                             <th>Due Date</th>
                             <th>Task Title</th>
                             <th>Tag Group</th>
-                            <th>Duration(mins)</th>
+                            <th>Duration</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody><!-- Dynamic rows go here --></tbody>
+                    <tbody></tbody>
                 </table>
             </div>
             <p id="no-records" class="hidden">No matching schedule task found.</p>
         </section>
 
-        <!-- Form Handling Input Section -->
+        <!-- Form Section -->
         <section id="form-section" class="app-section">
             <h2>Add / Edit Planner Task</h2>
             <div class="card">
@@ -102,7 +97,7 @@
                         </select>
                     </div>
                     <div class="input-group">
-                        <label for="form-amount">Duration(Minutes):</label>
+                        <label for="form-amount">Duration (Minutes):</label>
                         <input type="number" id="form-amount" required>
                     </div>
                     <button type="submit" id="submit-btn">Save Task Entry</button>
@@ -136,14 +131,6 @@
     <script src="scripts/app.js"></script>
 </body>
 </html>
-
-
-
-            
-
-
-    
-
    
 
 
