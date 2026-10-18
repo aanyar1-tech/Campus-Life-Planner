@@ -231,3 +231,9 @@ window.handleEdit = function(id) {
     document.getElementById('form-category').value = item.category;
     document.getElementById('submit-btn').textContent = "Update Task";
 };
+
+// Force the app to only show the Dashboard on initial load
+document.addEventListener('DOMContentLoaded', () => {
+    window.switchTab('dashboard');
+    renderApp();
+});
