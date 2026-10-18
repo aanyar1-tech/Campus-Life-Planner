@@ -15,7 +15,7 @@ if (state.records.length === 0) {
         { "id": "rec_1", "description": "Prepare for chemistry semester exam test", "amount": 120, "category": "Study", "date": "2026-10-16" },
         { "id": "rec_2", "description": "Review textbook assignment chapters", "amount": 90, "category": "Classes", "date": "2026-10-05" },
         { "id": "rec_3", "description": "Weekly group project sync planning session", "amount": 45, "category": "Classes", "date": "2026-10-08" },
-        { "id": "rec_4", "description": "Late late task review submission penalty check", "amount": 15, "category": "Exams", "date": "2026-10-10" },
+        { "id": "rec_4", "description": "Late late task review submission penalty check", "amount": 15, "category": "Exam", "date": "2026-10-10" },
         { "id": "rec_5", "description": "Weekly coffee coffee run study run session", "amount": 30, "category": "Personal", "date": "2026-10-14" }
     ];
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state.records));
@@ -26,10 +26,10 @@ function saveToLocalStorage() {
 }
 
 // 2. INPUT VALIDATOR CARDS WITH PLANNER REGEX PATTERNS
-function validateFormInputs(description, amount, date) { 
-    const descRegex \(= /^\S\)(?:\(.*\S\))?\$/; 
-    const amountRegex = /^(0|[1-9]\d*)\$/;
-    const dateRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|\d|3)\$/;
+function validateFormInputs(description, amount, date) {
+    const descRegex = /^\S(?:.*\S)?$/;
+    const amountRegex = /^(0|[1-9]\d*)$/;
+    const dateRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 
     if (!descRegex.test(description)) return false;
     if (!amountRegex.test(amount)) return false;
