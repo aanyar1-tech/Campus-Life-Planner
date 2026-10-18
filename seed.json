@@ -1,23 +1,8 @@
 
-const STORAGE_KEY = `simple_planner_records`;
-
-let state = {
-    records: JSON.parse(localStorage.getItem(STORAGE_KEY)) || [],
-    currentTab: 'dashboard',
-    timeTarget: 180,
-    isCaseSensitive: false,
-    editingId: null
-};
-
-if (state.records.length === 0) {
-    state.records =
   [  
   {"id": "rec_1", "description": "prepare for chemistry semester exam test", "amount":350.00,"category": "study", "date": "2026-10-16"},
   {"id": "rec_2", "description": "Engineering textbooks buy semester books","amount":89.99,"category":  "Book","date":"2026-10-05"},
   {"id": "rec_3", "description": "Weekly cafeteria lunch meal plan package", "amount":45.50,"category": "Food","date":"2026-10-08"},
   {"id": "rec_4", "description": "Late late submission fee penalty charges","amount":15.00,"category": "Fees","date":"2026-10-10"},
   {"id": "rec_5", "description": "Weekly coffee coffe run study run study session","amount":8.50,"category":"food","date":"2026-10-14"}
-
-]
-localStorage.setItem(STORAGE_KEY, JSON.stringify(state.records));
-}
+  ]
