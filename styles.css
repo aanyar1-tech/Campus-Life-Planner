@@ -37,25 +37,4 @@
     th{background:#f1f5f9;}
     mark{background:#fde047;padding:02px;}
     .hidden{display:none!important;}
-    // Function to handle layout conversions inside settings tab
-window.convertDisplayUnits = function() {
-    const unit = document.getElementById('display-unit').value;
-    const totalMinsElement = document.getElementById('stat-sum');
-    
-    // Fallback key matching your storage engine name
-    const STORAGE_KEY = 'campus_planner_records';
-    const savedRecords = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-
-    // Calculate total minutes directly from saved database rows
-    let totalMins = 0;
-    savedRecords.forEach(item => {
-        totalMins += parseInt(item.amount || 0);
-    });
-
-    if (unit === 'hours') {
-        const totalHours = (totalMins / 60).toFixed(1);
-        totalMinsElement.textContent = `${totalHours} hours`;
-    } else {
-        totalMinsElement.textContent = `${totalMins}`;
-    }
-};
+   
